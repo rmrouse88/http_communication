@@ -1,11 +1,13 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 import { Book } from "app/models/book";
 import { Reader } from "app/models/reader";
 import { DataService } from 'app/core/data.service';
 import { BookTrackerError } from '../models/bookTrackerError';
+
 //new comment
 @Component({
   selector: 'app-dashboard',
@@ -19,16 +21,24 @@ export class DashboardComponent implements OnInit {
   mostPopularBook: Book;
 
   constructor(private dataService: DataService,
-              private title: Title) { }
+              private title: Title,
+              private route: ActivatedRoute) { } // injecting the route to access the resolver
   
   ngOnInit() {
-    this.dataService.getAllBooks().subscribe(
-      (data : Book[]) => this.allBooks = data,
-      (err : BookTrackerError) => console.log(err.friendlyMessage),
-      () => console.log('All done getting books.')
 
-    )
-   
+    // no need to subscribe to the dataservice within the componenent any longer.
+    // the resolver already makes the call to the 'getAllBooks' method in the DataService
+    // however, we do need to inject the route so that we can access the output of the resolver
+
+    let resolvedData: Book[] | BookTrackerError = this.route.snapshot.data['resolvedBooks']
+
+    if (resolvedData instanceof BookTrackerError) {
+      console.log(`Dashboard component error: ${resolvedData.friendlyMessage}`)
+    }
+    else {
+      this.allBooks = resolvedData;
+    }
+
     this.allReaders = this.dataService.getAllReaders();
     this.mostPopularBook = this.dataService.mostPopularBook;
 

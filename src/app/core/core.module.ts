@@ -6,6 +6,7 @@ import { DataService } from './data.service';
 import { PlainLoggerService } from "./plain-logger.service";
 import { throwIfAlreadyLoaded } from "app/core/module-import-guard";
 import { BookTrackerErrorHandlerService } from './book-tracker-error-handler.service';
+import { BooksResolverService } from 'app/core/books-resolver.service';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { BookTrackerErrorHandlerService } from './book-tracker-error-handler.ser
   providers: [
     LoggerService, 
     DataService, 
-    { provide: ErrorHandler, useClass: BookTrackerErrorHandlerService }
+    { provide: ErrorHandler, useClass: BookTrackerErrorHandlerService },
+    BooksResolverService
   ]
 })
 export class CoreModule {
