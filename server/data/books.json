@@ -1,17 +1,5 @@
 [
     {
-        "bookID": 1,
-        "title": "Goodnight Moon",
-        "author": "Margaret Wise Brown",
-        "publicationYear": "1953"
-    },
-    {
-        "bookID": 2,
-        "title": "Winnie-the-Pooh",
-        "author": "A. A. Milne",
-        "publicationYear": "1926"
-    },
-    {
         "bookID": 3,
         "title": "Where the Wild Things Are",
         "author": "Maurice Sendak",
@@ -40,5 +28,11 @@
         "title": "Corduroy",
         "author": "Don Freeman",
         "publicationYear": "2000"
+    },
+    {
+        "bookID": 8,
+        "title": "Corduroy",
+        "author": "Don Freeman",
+        "publicationYear": "1968"
     }
 ]

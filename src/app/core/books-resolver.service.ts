@@ -9,7 +9,6 @@ import { DataService } from 'app/core/data.service';
 import { BookTrackerError } from  'app/models/bookTrackerError';
 
 @Injectable()
-
 export class BooksResolverService implements Resolve<Book[] | BookTrackerError> {
     constructor(private dataService: DataService) {}
 
